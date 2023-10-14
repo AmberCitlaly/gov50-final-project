@@ -12,3 +12,10 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to education policy. Particularly, the impact of  policies on underrepresented students attending higher education. I am also  interested in exploring data related to immigration policy. 
+
+
+```{r}
+library(readr)
+crdc_2015_16_ca_aug_2018 <- read_csv("crdc-2015-16-ca-aug-2018.csv")
+View(crdc_2015_16_ca_aug_2018)
+```
