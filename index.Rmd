@@ -11,7 +11,6 @@ output:
 
 ## Project Proposal
 
-
 Are k-12 Hispanic students in California prepared for college-level courses?  Due to the education gap, my hypothesis is that Hispanic students in California are taking fewer AP classes for college readiness and passing fewer AP tests compared to other racial groups. Hispanic students are less likely to attend college so I believe this will be reflected in the data. I will be focusing my analysis on the variables SCH_APENR_HI_F (number of Hispanic female students in at least 1 AP class) and SCH_APENR_HI_M (number of Hispanic male students in at least 1 AP class).  I will also be looking at the same variables for Asian, Black, White, Native, and Hawaiian/Pacific Islanders. My outcome variable will be SCH_APEXAM_ONEORMORE_HI_M (Students who took one or more AP exams: Hispanic Male), SCH_APEXAM_ONEORMORE_HI_F (Students who took one or more AP exams: Hispanic Female), SCH_APPASS_ONEORMORE_HI_M (Students who received a qualifying score on one or more AP exams: Hispanic Male), and SCH_APPASS_ONEORMORE_HI_F (Students who received a qualifying score on one or more AP exams: Hispanic Female). I will also be looking at the same variables for Asian, Black, White, Native, and Hawaiian/Pacific Islanders. The number of Hispanic students taking AP courses and passing AP tests being less than other racial groups would prove my hypothesis. The Number of Hispanic students taking AP courses and passing AP tests being more than other racial groups would disprove my hypothesis. 
 
 ```{r}
