@@ -16,7 +16,54 @@ Are k-12 Hispanic students in California prepared for college-level courses?  Du
 
 ```{r}
 library(tidyverse)
-crdc_2015_16_ca_aug_2018 <- read_csv("crdc-2015-16-ca-aug-2018.csv")
-crdc_2015_16_ca_aug_2018
+schools <- read_csv("crdc-2015-16-ca-aug-2018.csv")
+schools
 ```
+
+```{r}
+subset <- schools  %>% 
+  filter(SCH_GRADE_G09 == "YES" & SCH_GRADE_G10 == "YES" & SCH_GRADE_G11 == "YES" & SCH_GRADE_G12 == "YES" &    SCH_GRADE_G08 == "NO") 
+
+subset[subset == -9] <- NA 
+  
+median(subset$SCH_APCOURSES, na.rm = TRUE) 
+
+
+
+
+```
+
+
+
+```{r}
+schools[schools == -9] <- NA
+
+subset |>
+  mutate(
+    AP_distribution = case_when(
+    SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+    SCH_APCOURSES <= 12 ~ "Schools with 12 or less AP Classes", 
+    SCH_APCOURSES == 0 ~ "No AP Classes", 
+    TRUE ~ NA)) |>
+  
+  mutate(
+    Average_APClasses = mean(SCH_APEXAM_ONEORMORE_HP_M, na.rm = TRUE) 
+  ) |>
+  group_by(AP_distribution) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Average_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Average Number of Hispanic Male Students in at least 1 AP Class",
+       title = "California: Average number of Hispanic Male Students in at least 1 AP Class")
+  
+
+
+```
+
+
+
+
+   
+
+
 
