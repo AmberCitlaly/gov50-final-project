@@ -8,7 +8,6 @@ output:
 ---
 
 
-
 ```{r}
 library(tidyverse)
 schools <- read_csv("crdc-2015-16-ca-aug-2018.csv")
@@ -19,7 +18,7 @@ schools
 subset <- schools  %>% 
   filter(SCH_GRADE_G09 == "YES" & SCH_GRADE_G10 == "YES" & SCH_GRADE_G11 == "YES" & SCH_GRADE_G12 == "YES" &    SCH_GRADE_G08 == "NO") 
 
-subset[subset == -9] <- NA 
+subset[subset < 0] <- NA 
   
 median(subset$SCH_APCOURSES, na.rm = TRUE) 
 
@@ -28,31 +27,47 @@ median(subset$SCH_APCOURSES, na.rm = TRUE)
 
 ```
 
-## Final Project Milestone 3
+## Final Project Milestone 4
 
 ```{r}
-schools[schools == -9] <- NA
+## schools[schools == -9] <- NA
 
-subset |>
+subset <- subset |> 
+  filter(!is.na(SCH_APEXAM_ONEORMORE_HP_M) & !is.na(SCH_APEXAM_ONEORMORE_HI_F)) |> 
+  mutate(total_hispanic_students_AP = (SCH_APEXAM_ONEORMORE_HP_M + SCH_APEXAM_ONEORMORE_HI_F),
+         total_hispanic_student_enrollment = (SCH_ENR_HI_M + SCH_ENR_HI_F)) |> 
+  mutate(school_level_hisp_m_AP_rate = total_hispanic_students_AP/total_hispanic_student_enrollment)
+ 
+
+subset_hispanic <- subset |>
   mutate(
     AP_distribution = case_when(
-    SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
-    SCH_APCOURSES <= 12 ~ "Schools with 12 or less AP Classes", 
-    SCH_APCOURSES == 0 ~ "No AP Classes", 
-    TRUE ~ NA)) |>
-  
-  mutate(
-    Average_APClasses = mean(SCH_APEXAM_ONEORMORE_HP_M, na.rm = TRUE) 
-  ) |>
-  group_by(AP_distribution) |>
-  ggplot(mapping = aes(x = AP_distribution, y = Average_APClasses )) +
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with 12 or less AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_hisp_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
   geom_col() +
   labs(x = "Number of AP Classes Offered (CA Public High Schools)",
        y = "Average Number of Hispanic Male Students in at least 1 AP Class",
        title = "California: Average number of Hispanic Male Students in at least 1 AP Class")
-  
+subset_hispanic
 
+subset_groups <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with 12 or less AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_hisp_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with 12 or less AP Classes`)
+```
 
+```{r}
+subset$SCH_ENR_HI_M
 ```
 
 
