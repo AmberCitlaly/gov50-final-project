@@ -43,37 +43,34 @@ subset_hispanic <- subset |>
   mutate(
     AP_distribution = case_when(
       SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
-      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with 12 or less AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
       is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
   group_by(AP_distribution) %>% 
   summarize(Proportion_APClasses = mean(school_level_hisp_m_AP_rate, na.rm = TRUE)) |>
   ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
   geom_col() +
   labs(x = "Number of AP Classes Offered (CA Public High Schools)",
-       y = "Average Number of Hispanic Male Students in at least 1 AP Class",
-       title = "California: Average number of Hispanic Male Students in at least 1 AP Class")
+       y = "Proportion of Hispanic Students in at least 1 AP Class",
+       title = "California: Proportion of Hispanic Students in at least 1 AP Class")
 subset_hispanic
 
 subset_groups <- subset |>
   mutate(
     AP_distribution = case_when(
       SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
-      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with 12 or less AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
       is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
   group_by(AP_distribution) %>% 
   summarize(Proportion_APClasses = mean(school_level_hisp_m_AP_rate, na.rm = TRUE)) |> 
   pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
-  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with 12 or less AP Classes`)
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups
+
 ```
 
-```{r}
-subset$SCH_ENR_HI_M
-```
+In the graph above I compared the proportion of Hispanic students taking at least 1 AP class in California public schools. In order to better account for differences in school funding I created one group for Hispanic students who attend a school that offers "12 or more AP classes" and another for students who attend a school that offers "less than 12 AP classes". Twelve was the average number of AP classes offered by the high schools in the data set. 8.997% of Hispanic students in California public schools that offer 12 or more AP classes are taking at least 1 AP class. 8.081% of Hispanic students in California public schools that offer less than 12 AP classes are taking at least 1 AP class. The ATE between these two groups is 0.0916%. Hispanic students in schools that offer more than 12 AP classes are slightly more likely to be enrolled in at least 1 AP class. It is important to mention that there are possible confounding variables. The funding of schools and the quality of AP classes may impact the percentage of Hispanic students enrolled in the courses.
 
-
-
-
-   
 
 
 
