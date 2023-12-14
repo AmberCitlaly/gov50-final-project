@@ -304,7 +304,6 @@ subset_groups_MR
 
 ##In my first two plots, I have the proportion of students enrolled in at least one AP course by racial groups. I created a plot for students attending schools with 12 or more AP courses, and another for students attending schools with less than 12 AP classes. Twelve was the average number of AP classes offered by high schools in the dataset. I separated these two groups to account for possible income differences that might impact the number of AP courses offered at a school district. 
 
-
 ```{r}
 library(ggplot2)
 library(dplyr)
