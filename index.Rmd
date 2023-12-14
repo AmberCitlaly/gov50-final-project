@@ -10,6 +10,7 @@ output:
 
 ```{r}
 library(tidyverse)
+library(gapminder)
 schools <- read_csv("crdc-2015-16-ca-aug-2018.csv")
 schools
 ```
@@ -22,19 +23,15 @@ subset[subset < 0] <- NA
   
 median(subset$SCH_APCOURSES, na.rm = TRUE) 
 
-
-
-
 ```
 
-## Final Project Milestone 4
-
+## Hispanic Students
 ```{r}
 ## schools[schools == -9] <- NA
 
 subset <- subset |> 
-  filter(!is.na(SCH_APEXAM_ONEORMORE_HP_M) & !is.na(SCH_APEXAM_ONEORMORE_HI_F)) |> 
-  mutate(total_hispanic_students_AP = (SCH_APEXAM_ONEORMORE_HP_M + SCH_APEXAM_ONEORMORE_HI_F),
+  filter(!is.na(SCH_APENR_HI_M) & !is.na(SCH_APENR_HI_F)) |> 
+  mutate(total_hispanic_students_AP = (SCH_APENR_HI_M + SCH_APENR_HI_F),
          total_hispanic_student_enrollment = (SCH_ENR_HI_M + SCH_ENR_HI_F)) |> 
   mutate(school_level_hisp_m_AP_rate = total_hispanic_students_AP/total_hispanic_student_enrollment)
  
@@ -54,7 +51,7 @@ subset_hispanic <- subset |>
        title = "California: Proportion of Hispanic Students in at least 1 AP Class")
 subset_hispanic
 
-subset_groups <- subset |>
+subset_groups_H <- subset |>
   mutate(
     AP_distribution = case_when(
       SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
@@ -65,11 +62,401 @@ subset_groups <- subset |>
   pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
   mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
 
-subset_groups
+subset_groups_H
 
 ```
 
-In the graph above I compared the proportion of Hispanic students taking at least 1 AP class in California public schools. In order to better account for differences in school funding I created one group for Hispanic students who attend a school that offers "12 or more AP classes" and another for students who attend a school that offers "less than 12 AP classes". Twelve was the average number of AP classes offered by the high schools in the data set. 8.997% of Hispanic students in California public schools that offer 12 or more AP classes are taking at least 1 AP class. 8.081% of Hispanic students in California public schools that offer less than 12 AP classes are taking at least 1 AP class. The ATE between these two groups is 0.0916%. Hispanic students in schools that offer more than 12 AP classes are slightly more likely to be enrolled in at least 1 AP class. It is important to mention that there are possible confounding variables. The funding of schools and the quality of AP classes may impact the percentage of Hispanic students enrolled in the courses.
+## Asian Students 
+```{r}
+subset <- subset |> 
+  filter(!is.na(SCH_APENR_AS_M) & !is.na(SCH_APENR_AS_F)) |> 
+  mutate(total_asian_students_AP = (SCH_APEXAM_ONEORMORE_AS_M + SCH_APENR_AS_F),
+         total_asian_student_enrollment = (SCH_ENR_AS_M + SCH_ENR_AS_F)) |> 
+  mutate(school_level_asian_m_AP_rate = total_asian_students_AP/total_asian_student_enrollment)
+ 
+
+subset_asian <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_asian_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Proportion of Asian Students in at least 1 AP Class",
+       title = "California: Proportion of Asian Students in at least 1 AP Class")
+subset_asian
+
+subset_groups_A <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_asian_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups_A
+```
+
+## American Indian/Alaska Native Students
+```{r}
+subset <- subset |> 
+  filter(!is.na(SCH_APENR_AM_M) & !is.na(SCH_APENR_AM_F)) |> 
+  mutate(total_native_students_AP = (SCH_APENR_AM_M + SCH_APENR_AM_F),
+         total_native_student_enrollment = (SCH_ENR_AM_M + SCH_ENR_AM_F)) |> 
+  mutate(school_level_native_m_AP_rate = total_native_students_AP/total_native_student_enrollment)
+ 
+
+subset_native <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_native_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Proportion of Native Students in at least 1 AP Class",
+       title = "California: Proportion of Native Students in at least 1 AP Class")
+subset_native
+
+subset_groups_N <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_native_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups_N
+```
+
+## Native Hawaiian/Pacific Islander Students 
+```{r}
+subset <- subset |> 
+  filter(!is.na(SCH_APENR_HP_M) & !is.na(SCH_APENR_HP_F)) |> 
+  mutate(total_nativepacific_students_AP = (SCH_APENR_HP_M + SCH_APENR_HP_F),
+         total_nativepacific_student_enrollment = (SCH_ENR_HP_M + SCH_ENR_HP_F)) |> 
+  mutate(school_level_nativepacific_m_AP_rate = total_nativepacific_students_AP/total_nativepacific_student_enrollment)
+ 
+
+subset_nativepacific <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_nativepacific_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Proportion of Native Hawaiian/Pacific Islander Students in at least 1 AP Class",
+       title = "California: Proportion of Native Hawaiian/Pacific Islander Students in at least 1 AP Class")
+
+subset_nativepacific
+
+subset_groups_NP <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_nativepacific_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups_NP
+```
+
+## Black Students 
+```{r}
+subset <- subset |> 
+  filter(!is.na(SCH_APENR_BL_M) & !is.na(SCH_APENR_BL_F)) |> 
+  mutate(total_black_students_AP = (SCH_APENR_BL_M + SCH_APENR_BL_F),
+         total_black_student_enrollment = (SCH_ENR_BL_M + SCH_ENR_BL_F)) |> 
+  mutate(school_level_black_m_AP_rate = total_black_students_AP/total_black_student_enrollment)
+ 
+
+subset_black <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_black_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Proportion of Black Students in at least 1 AP Class",
+       title = "California: Proportion of Black Students in at least 1 AP Class")
+subset_black
+
+subset_groups_B <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_black_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups_B
+```
+
+## White students 
+```{r}
+subset <- subset |> 
+  filter(!is.na(SCH_APENR_WH_M) & !is.na(SCH_APENR_WH_M)) |> 
+  mutate(total_white_students_AP = (SCH_APENR_WH_M + SCH_APENR_WH_M),
+         total_white_student_enrollment = (SCH_ENR_WH_M + SCH_ENR_WH_F)) |> 
+  mutate(school_level_white_m_AP_rate = total_white_students_AP/total_white_student_enrollment)
+ 
+
+subset_white <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_white_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Proportion of White Students in at least 1 AP Class",
+       title = "California: Proportion of White Students in at least 1 AP Class")
+subset_white
+
+subset_groups_W <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_white_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups_W
+```
+
+## Two or More Race Students 
+```{r}
+subset <- subset |> 
+  filter(!is.na(SCH_APENR_TR_M) & !is.na(SCH_APENR_TR_F)) |> 
+  mutate(total_mixedrace_students_AP = (SCH_APENR_TR_M + SCH_APENR_TR_F),
+         total_mixedrace_student_enrollment = (SCH_ENR_TR_M + SCH_ENR_TR_F)) |> 
+  mutate(school_level_mixedrace_m_AP_rate = total_mixedrace_students_AP/total_mixedrace_student_enrollment)
+ 
+
+subset_mixedrace <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_mixedrace_m_AP_rate, na.rm = TRUE)) |>
+  ggplot(mapping = aes(x = AP_distribution, y = Proportion_APClasses )) +
+  geom_col() +
+  labs(x = "Number of AP Classes Offered (CA Public High Schools)",
+       y = "Proportion of Two or More Race Students in at least 1 AP Class",
+       title = "California: Proportion of Two or More Race Students in at least 1 AP Class")
+subset_mixedrace
+
+subset_groups_MR <- subset |>
+  mutate(
+    AP_distribution = case_when(
+      SCH_APCOURSES >= 12 ~ "Schools with 12 or more AP Classes", 
+      SCH_APCOURSES < 12 & SCH_APCOURSES != 0 ~ "Schools with less than 12 AP Classes", 
+      is.na(SCH_APCOURSES) ~ "No AP Classes")) |>
+  group_by(AP_distribution) %>% 
+  summarize(Proportion_APClasses = mean(school_level_mixedrace_m_AP_rate, na.rm = TRUE)) |> 
+  pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+
+subset_groups_MR
+```
+
+## Final Project
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+H_Average <- subset_groups_H |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+A_Average <- subset_groups_A |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+N_Average <- subset_groups_N |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+NP_Average <- subset_groups_NP |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+B_Average <- subset_groups_B |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+W_Average <- subset_groups_W |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+MR_Average <- subset_groups_MR |>
+  select("Schools with 12 or more AP Classes","Schools with less than 12 AP Classes")
+
+Race_1 <- c("Hispanic", "Asian", "American Native", "Pacific Islander", "Black", "White", "Two or More Races")
+
+Average_Races <- rbind(H_Average, A_Average, N_Average, NP_Average, B_Average, W_Average, MR_Average)
+
+AP_Averages_Race <- data.frame(race = Race_1, averages = Average_Races*100) 
+
+
+AP_Averages_Race |>
+  group_by(race) |>
+  ggplot(aes(x = race, y = averages.Schools.with.12.or.more.AP.Classes)) +
+  geom_col() +
+    labs(x = "Race",
+       y = "Percent of Students in at Least 1 AP Class",
+       title = "California: Proportion of Students by Racial Group in at least 1 AP Class",
+       subtitle = "Schools with 12 or more AP Classes",
+       source = "Office for Civil Rights")
+
+
+AP_Averages_Race |>
+  group_by(race) |>
+  ggplot(aes(x = race, y = averages.Schools.with.less.than.12.AP.Classes)) +
+  geom_col() +
+  labs(x = "Race",
+       y = "Percent of Students in at Least 1 AP Class",
+       title = "California: Proportion of Students by Racial Group in at least 1 AP Class",
+       subtitle = "Schools with less than 12 AP Classes",
+       source = "Office for Civil Rights")
+```
+
+```{r}
+income <- read_csv("Average Income.csv", col_names = FALSE)
+
+income
+```
+
+```{r}
+income <- income |>
+  mutate(X2 = str_extract(X2,"^[^/]+") |> str_to_upper())
+```
+
+```{r}
+income <- income |>
+  mutate(X3 = str_trim(str_replace(X2, " SCHOOL DISTRICT", "")))
+
+```
+
+```{r}
+merged_data <- inner_join(subset, income, by = c("LEA_NAME" = "X3"))
+```
+
+```{r}
+merged_data <- merged_data |>
+  mutate(X1_numeric = as.numeric(str_replace_all(X1, "[$,]", "")))
+```
+
+```{r}
+R1  <- lm(school_level_hisp_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R1 <- coef(R1)[2]
+
+summary(R1)
+```
+
+```{r}
+R2 <- lm(school_level_asian_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R2 <- coef(R2)[2]
+
+summary(R2)
+```
+
+```{r}
+R3  <- lm(school_level_native_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R3 <- coef(R3)[2]
+
+summary(R3)
+```
+
+```{r}
+R4  <- lm(school_level_nativepacific_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R4 <- coef(R4)[2]
+
+summary(R4)
+```
+
+```{r}
+R5  <- lm(school_level_black_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R5 <- coef(R5)[2]
+
+summary(R5)
+```
+
+```{r}
+R6  <- lm(school_level_white_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R6 <- coef(R6)[2]
+
+summary(R6)
+```
+
+```{r}
+R7  <- lm(school_level_mixedrace_m_AP_rate ~ X1_numeric, data = merged_data)
+
+outcome_variable_R7 <- coef(R7)[2]
+
+summary(R7)
+```
+
+```{r}
+race <- c("Hispanic", "Asian", "American Native", "Pacific Islander", "Black", "White", "Two or More Races")
+
+coef_values <- c(outcome_variable_R1,outcome_variable_R2,outcome_variable_R3,outcome_variable_R4,outcome_variable_R5,outcome_variable_R6,outcome_variable_R7)
+
+coefficients <- data.frame(race = race, coefs = coef_values) |>
+  mutate(percent_coefs = coefs*10000000)
+
+coefficients |>
+  group_by(race) |>
+  ggplot(mapping = aes(x = race, y = percent_coefs)) +
+  geom_col() +
+  labs(x = "Race",
+       y = "Percent of Students in at Least 1 AP Class",
+       title = "California: Proportion of Students by Racial Group in at least 1 AP Class",
+       subtitle = "For Every $100,000 Average Distrcit Income Increase",
+       source = "Office for Civil Rights")
+```
+
+
+
+
+
 
 
 
