@@ -252,7 +252,8 @@ subset_groups_W <- subset |>
   group_by(AP_distribution) %>% 
   summarize(Proportion_APClasses = mean(school_level_white_m_AP_rate, na.rm = TRUE)) |> 
   pivot_wider(names_from = AP_distribution, values_from = Proportion_APClasses) |> 
-  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`)
+  mutate(ATE = `Schools with 12 or more AP Classes` - `Schools with less than 12 AP Classes`) +
+
 
 subset_groups_W
 ```
@@ -297,6 +298,11 @@ subset_groups_MR
 
 ## Final Project
 
+## Introduction:Are Hispanic students in California prepared for college-level courses?  Due to the education gap, I hypothesize that Hispanic students in California are taking fewer Advanced Placement courses compared to other racial groups. It is critical to monitor the disparities among racial groups in AP course enrollment to identify populations in need of more support. In order to create an equitable education system where students are college-ready, we must ensure all students are enrolled in AP courses. In my project, I also analyze how the average district income impacts students' likelihood of being enrolled in AP courses. 
+
+## Data: My project is a cross-sectional study where I analyze survey data from the U.S. Census Bureau and the Office for Civil Rights. I use data from the OCR Civil Rights Data Collection from 2015-2016 that contains information on every school district in California. This information is collected directly from the school districts. From this data, I obtained my dependent variable, which is the proportion of students by racial group enrolled in AP courses in every school district in California. I also use data from the U.S. Census Bureau American Community Survey – Education Tabulation (ACS-ED) from 2010-2014. This is an annual national survey conducted by the U.S. Census Bureau to obtain information on communities. From this data, I obtained my independent variable, which is the average household income for every school district in California
+
+##In my first two plots, I have the proportion of students enrolled in at least one AP course by racial groups. I created a plot for students attending schools with 12 or more AP courses, and another for students attending schools with less than 12 AP classes. Twelve was the average number of AP classes offered by high schools in the dataset. I separated these two groups to account for possible income differences that might impact the number of AP courses offered at a school district. 
 
 ```{r}
 library(ggplot2)
@@ -338,7 +344,8 @@ AP_Averages_Race |>
        y = "Percent of Students in at Least 1 AP Class",
        title = "California: Proportion of Students by Racial Group in at least 1 AP Class",
        subtitle = "Schools with 12 or more AP Classes",
-       source = "Office for Civil Rights")
+       source = "Office for Civil Rights") +
+  geom_text(aes(label = averages.Schools.with.12.or.more.AP.Classes), vjust = -0.5, color = "blue", size = 3)
 
 
 AP_Averages_Race |>
@@ -349,7 +356,10 @@ AP_Averages_Race |>
        y = "Percent of Students in at Least 1 AP Class",
        title = "California: Proportion of Students by Racial Group in at least 1 AP Class",
        subtitle = "Schools with less than 12 AP Classes",
-       source = "Office for Civil Rights")
+       source = "Office for Civil Rights") +
+  geom_text(aes(label = averages.Schools.with.less.than.12.AP.Classes), vjust = -0.5, color = "blue", size = 3)
+
+knitr::kable(AP_Averages_Race)
 ```
 
 ```{r}
@@ -433,8 +443,15 @@ outcome_variable_R7 <- coef(R7)[2]
 
 summary(R7)
 ```
+##Results: In my bar plot, I showcase my regression of interest, which is the impact of the average household income of a school district in California on the likelihood of a student being enrolled in at least one AP course. My bar chart divides students into racial groups and displays the estimated probability of a student from each group enrolling in at least one AP course for every $100,000 increase in the school district's average household income. 
+
+##The bar plot demonstrates that Hispanic students are impacted the least by a $100,000 increase in the school district's average household income. For every $100,000 increase, Hispanic students are only 1.5% more likely to be enrolled in at least one AP course. This coefficient demonstrates that Hispanic students are still less likely to be enrolled in AP courses, even with an increase in the average household income in their school district. The statistical significance is likely for the estimated coefficients because all but one of the regressions for the racial groups had a P value less than 0.05. The Pacific Islander regression had a P value of 0.1846. My analysis also contains information from 823 high schools out of the 1018 high schools in the original dataset from the OCR Civil Rights Data Collection. I do not believe the coefficients represent a causal effect because various possible confounding variables must be accounted for. 
+
+##Conclusion: In my first plots, I summarize the proportion of students by racial group enrolled in at least one AP course in California. I created a plot for students attending schools with 12 or more AP courses, and another for students attending schools with less than 12 AP classes. In both plots, Black and Hispanic students are the racial group with the lowest number of students enrolled in AP courses. In my regressions, I found that Hispanic students were the racial group least impacted by a $100,000 increase in the school district's average household income. This implies that Hispanic students are still less likely to be enrolled in AP courses, even with an increase in the average household income in their school district. The results from my analysis can all be used as evidence to prove my hypothesis that Hispanic students are less likely to be enrolled in AP courses in comparison to other racial groups. There are various possible confounding variables in my analysis. In the OCR Civil Rights Data Collection from 2015-2016, there is a large amount of missing data that may have interfered with my analysis. It is possible that school districts with positive data to report were more incentivized to report their numbers to the Office for Civil Rights. It is also important to note that the data from the U.S. Census Bureau only reported the average household income of whole school districts and not individual racial groups. This limitation barred me from analyzing the impact of a $100,000 average household income increase for each racial group within a California school district. With more time and resources, I would improve my analysis by getting data on the average household income for each racial group within each school district. 
+
 
 ```{r}
+library(ggplot2)
 race <- c("Hispanic", "Asian", "American Native", "Pacific Islander", "Black", "White", "Two or More Races")
 
 coef_values <- c(outcome_variable_R1,outcome_variable_R2,outcome_variable_R3,outcome_variable_R4,outcome_variable_R5,outcome_variable_R6,outcome_variable_R7)
@@ -450,7 +467,10 @@ coefficients |>
        y = "Percent of Students in at Least 1 AP Class",
        title = "California: Proportion of Students by Racial Group in at least 1 AP Class",
        subtitle = "For Every $100,000 Average Distrcit Income Increase",
-       source = "Office for Civil Rights")
+       source = "Office for Civil Rights and The U.S. Census Bureau") +
+  geom_text(aes(label = percent_coefs), vjust = -0.5, color = "blue", size = 3)
+
+knitr::kable(coefficients)
 ```
 
 

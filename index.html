@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["crdc-2015-16-ca-aug-2018.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Average Income.csv","crdc-2015-16-ca-aug-2018.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-10-1.png","index_files/figure-html5/unnamed-chunk-10-2.png","index_files/figure-html5/unnamed-chunk-23-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1546,6 +1546,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jennybc/gapminder'>gapminder</a></span><span class='op'>)</span></span>
 <span><span class='va'>schools</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"crdc-2015-16-ca-aug-2018.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>schools</span></span></code></pre>
 </div>
@@ -1581,14 +1582,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code>[1] 12</code></pre>
 </div>
-<h2 id="final-project-milestone-4">Final Project Milestone 4</h2>
+<h2 id="hispanic-students">Hispanic Students</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>## schools[schools == -9] &lt;- NA</span></span>
 <span></span>
 <span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APEXAM_ONEORMORE_HP_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APEXAM_ONEORMORE_HI_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_hispanic_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APEXAM_ONEORMORE_HP_M</span> <span class='op'>+</span> <span class='va'>SCH_APEXAM_ONEORMORE_HI_F</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_HI_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_HI_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_hispanic_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APENR_HI_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_HI_F</span><span class='op'>)</span>,</span>
 <span>         total_hispanic_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_HI_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_HI_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_hisp_m_AP_rate <span class='op'>=</span> <span class='va'>total_hispanic_students_AP</span><span class='op'>/</span><span class='va'>total_hispanic_student_enrollment</span><span class='op'>)</span></span>
 <span> </span>
@@ -1610,7 +1611,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_H</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
 <span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
 <span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
@@ -1621,16 +1622,612 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>subset_groups</span></span></code></pre>
+<span><span class='va'>subset_groups_H</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Schools with 12 or more AP Classes` Schools with less than…¹    ATE
+                                 &lt;dbl&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+1                                0.212                    0.180 0.0321
+# ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
+</div>
+<h2 id="asian-students">Asian Students</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_AS_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_AS_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_asian_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APEXAM_ONEORMORE_AS_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_AS_F</span><span class='op'>)</span>,</span>
+<span>         total_asian_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_AS_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_AS_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_asian_m_AP_rate <span class='op'>=</span> <span class='va'>total_asian_students_AP</span><span class='op'>/</span><span class='va'>total_asian_student_enrollment</span><span class='op'>)</span></span>
+<span> </span>
+<span></span>
+<span><span class='va'>subset_asian</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_asian_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AP_distribution</span>, y <span class='op'>=</span> <span class='va'>Proportion_APClasses</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of AP Classes Offered (CA Public High Schools)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Proportion of Asian Students in at least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Asian Students in at least 1 AP Class"</span><span class='op'>)</span></span>
+<span><span class='va'>subset_asian</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_A</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_asian_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_groups_A</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Schools with 12 or more AP Classes` Schools with less than…¹    ATE
+                                 &lt;dbl&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+1                                0.386                    0.292 0.0936
+# ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
+</div>
+<h2 id="american-indianalaska-native-students">American Indian/Alaska Native Students</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_AM_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_AM_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_native_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APENR_AM_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_AM_F</span><span class='op'>)</span>,</span>
+<span>         total_native_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_AM_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_AM_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_native_m_AP_rate <span class='op'>=</span> <span class='va'>total_native_students_AP</span><span class='op'>/</span><span class='va'>total_native_student_enrollment</span><span class='op'>)</span></span>
+<span> </span>
+<span></span>
+<span><span class='va'>subset_native</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_native_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AP_distribution</span>, y <span class='op'>=</span> <span class='va'>Proportion_APClasses</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of AP Classes Offered (CA Public High Schools)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Proportion of Native Students in at least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Native Students in at least 1 AP Class"</span><span class='op'>)</span></span>
+<span><span class='va'>subset_native</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_N</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_native_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_groups_N</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Schools with 12 or more AP Classes` Schools with less than…¹    ATE
+                                 &lt;dbl&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+1                                0.277                    0.196 0.0814
+# ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
+</div>
+<h2 id="native-hawaiianpacific-islander-students">Native Hawaiian/Pacific Islander Students</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_HP_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_HP_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_nativepacific_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APENR_HP_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_HP_F</span><span class='op'>)</span>,</span>
+<span>         total_nativepacific_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_HP_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_HP_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_nativepacific_m_AP_rate <span class='op'>=</span> <span class='va'>total_nativepacific_students_AP</span><span class='op'>/</span><span class='va'>total_nativepacific_student_enrollment</span><span class='op'>)</span></span>
+<span> </span>
+<span></span>
+<span><span class='va'>subset_nativepacific</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_nativepacific_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AP_distribution</span>, y <span class='op'>=</span> <span class='va'>Proportion_APClasses</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of AP Classes Offered (CA Public High Schools)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Proportion of Native Hawaiian/Pacific Islander Students in at least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Native Hawaiian/Pacific Islander Students in at least 1 AP Class"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_nativepacific</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_NP</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_nativepacific_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_groups_NP</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Schools with 12 or more AP Classes` Schools with less than…¹    ATE
+                                 &lt;dbl&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+1                                0.295                    0.228 0.0667
+# ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
+</div>
+<h2 id="black-students">Black Students</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_BL_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_BL_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_black_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APENR_BL_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_BL_F</span><span class='op'>)</span>,</span>
+<span>         total_black_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_BL_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_BL_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_black_m_AP_rate <span class='op'>=</span> <span class='va'>total_black_students_AP</span><span class='op'>/</span><span class='va'>total_black_student_enrollment</span><span class='op'>)</span></span>
+<span> </span>
+<span></span>
+<span><span class='va'>subset_black</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_black_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AP_distribution</span>, y <span class='op'>=</span> <span class='va'>Proportion_APClasses</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of AP Classes Offered (CA Public High Schools)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Proportion of Black Students in at least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Black Students in at least 1 AP Class"</span><span class='op'>)</span></span>
+<span><span class='va'>subset_black</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_B</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_black_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_groups_B</span></span></code></pre>
 </div>
 <pre><code># A tibble: 1 × 3
   `Schools with 12 or more AP Classes` Schools with less tha…¹     ATE
                                  &lt;dbl&gt;                   &lt;dbl&gt;   &lt;dbl&gt;
-1                               0.0900                  0.0808 0.00916
+1                                0.198                   0.190 0.00842
 # ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
 </div>
-<p>In the graph above I compared the proportion of Hispanic students taking at least 1 AP class in California public schools. In order to better account for differences in school funding I created one group for Hispanic students who attend a school that offers “12 or more AP classes” and another for students who attend a school that offers “less than 12 AP classes”. Twelve was the average number of AP classes offered by the high schools in the data set. 8.997% of Hispanic students in California public schools that offer 12 or more AP classes are taking at least 1 AP class. 8.081% of Hispanic students in California public schools that offer less than 12 AP classes are taking at least 1 AP class. The ATE between these two groups is 0.0916%. Hispanic students in schools that offer more than 12 AP classes are slightly more likely to be enrolled in at least 1 AP class. It is important to mention that there are possible confounding variables. The funding of schools and the quality of AP classes may impact the percentage of Hispanic students enrolled in the courses.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="white-students">White students</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_WH_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_WH_M</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_white_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APENR_WH_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_WH_M</span><span class='op'>)</span>,</span>
+<span>         total_white_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_WH_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_WH_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_white_m_AP_rate <span class='op'>=</span> <span class='va'>total_white_students_AP</span><span class='op'>/</span><span class='va'>total_white_student_enrollment</span><span class='op'>)</span></span>
+<span> </span>
+<span></span>
+<span><span class='va'>subset_white</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_white_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AP_distribution</span>, y <span class='op'>=</span> <span class='va'>Proportion_APClasses</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of AP Classes Offered (CA Public High Schools)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Proportion of White Students in at least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of White Students in at least 1 AP Class"</span><span class='op'>)</span></span>
+<span><span class='va'>subset_white</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-8-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_W</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_white_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_groups_W</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Schools with 12 or more AP Classes` Schools with less than…¹    ATE
+                                 &lt;dbl&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+1                                0.254                    0.179 0.0757
+# ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
+</div>
+<h2 id="two-or-more-race-students">Two or More Race Students</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_TR_M</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APENR_TR_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>total_mixedrace_students_AP <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_APENR_TR_M</span> <span class='op'>+</span> <span class='va'>SCH_APENR_TR_F</span><span class='op'>)</span>,</span>
+<span>         total_mixedrace_student_enrollment <span class='op'>=</span> <span class='op'>(</span><span class='va'>SCH_ENR_TR_M</span> <span class='op'>+</span> <span class='va'>SCH_ENR_TR_F</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>school_level_mixedrace_m_AP_rate <span class='op'>=</span> <span class='va'>total_mixedrace_students_AP</span><span class='op'>/</span><span class='va'>total_mixedrace_student_enrollment</span><span class='op'>)</span></span>
+<span> </span>
+<span></span>
+<span><span class='va'>subset_mixedrace</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_mixedrace_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>AP_distribution</span>, y <span class='op'>=</span> <span class='va'>Proportion_APClasses</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Number of AP Classes Offered (CA Public High Schools)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Proportion of Two or More Race Students in at least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Two or More Race Students in at least 1 AP Class"</span><span class='op'>)</span></span>
+<span><span class='va'>subset_mixedrace</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>subset_groups_MR</span> <span class='op'>&lt;-</span> <span class='va'>subset</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    AP_distribution <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&gt;=</span> <span class='fl'>12</span> <span class='op'>~</span> <span class='st'>"Schools with 12 or more AP Classes"</span>, </span>
+<span>      <span class='va'>SCH_APCOURSES</span> <span class='op'>&lt;</span> <span class='fl'>12</span> <span class='op'>&amp;</span> <span class='va'>SCH_APCOURSES</span> <span class='op'>!=</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Schools with less than 12 AP Classes"</span>, </span>
+<span>      <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SCH_APCOURSES</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"No AP Classes"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>AP_distribution</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>Proportion_APClasses <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>school_level_mixedrace_m_AP_rate</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='va'>AP_distribution</span>, values_from <span class='op'>=</span> <span class='va'>Proportion_APClasses</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>ATE <span class='op'>=</span> <span class='va'>`Schools with 12 or more AP Classes`</span> <span class='op'>-</span> <span class='va'>`Schools with less than 12 AP Classes`</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>subset_groups_MR</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Schools with 12 or more AP Classes` Schools with less than…¹    ATE
+                                 &lt;dbl&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+1                                0.277                    0.205 0.0719
+# ℹ abbreviated name: ¹​`Schools with less than 12 AP Classes`</code></pre>
+</div>
+<h2 id="final-project">Final Project</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>H_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_H</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>A_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_A</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>N_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_N</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>NP_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_NP</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>B_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_B</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>W_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_W</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>MR_Average</span> <span class='op'>&lt;-</span> <span class='va'>subset_groups_MR</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='st'>"Schools with 12 or more AP Classes"</span>,<span class='st'>"Schools with less than 12 AP Classes"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>Race_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hispanic"</span>, <span class='st'>"Asian"</span>, <span class='st'>"American Native"</span>, <span class='st'>"Pacific Islander"</span>, <span class='st'>"Black"</span>, <span class='st'>"White"</span>, <span class='st'>"Two or More Races"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>Average_Races</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>H_Average</span>, <span class='va'>A_Average</span>, <span class='va'>N_Average</span>, <span class='va'>NP_Average</span>, <span class='va'>B_Average</span>, <span class='va'>W_Average</span>, <span class='va'>MR_Average</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>AP_Averages_Race</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>race <span class='op'>=</span> <span class='va'>Race_1</span>, averages <span class='op'>=</span> <span class='va'>Average_Races</span><span class='op'>*</span><span class='fl'>100</span><span class='op'>)</span> </span>
+<span></span>
+<span></span>
+<span><span class='va'>AP_Averages_Race</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>race</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>race</span>, y <span class='op'>=</span> <span class='va'>averages.Schools.with.12.or.more.AP.Classes</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Race"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Percent of Students in at Least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Students by Racial Group in at least 1 AP Class"</span>,</span>
+<span>       subtitle <span class='op'>=</span> <span class='st'>"Schools with 12 or more AP Classes"</span>,</span>
+<span>       source <span class='op'>=</span> <span class='st'>"Office for Civil Rights"</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-10-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AP_Averages_Race</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>race</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>race</span>, y <span class='op'>=</span> <span class='va'>averages.Schools.with.less.than.12.AP.Classes</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Race"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Percent of Students in at Least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Students by Racial Group in at least 1 AP Class"</span>,</span>
+<span>       subtitle <span class='op'>=</span> <span class='st'>"Schools with less than 12 AP Classes"</span>,</span>
+<span>       source <span class='op'>=</span> <span class='st'>"Office for Civil Rights"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-10-2.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>income</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"Average Income.csv"</span>, col_names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>income</span></span></code></pre>
+</div>
+<pre><code># A tibble: 986 × 2
+   X1       X2                                                   
+   &lt;chr&gt;    &lt;chr&gt;                                                
+ 1 $250,001 Hillsborough City Elementary School District / 11,148
+ 2 $212,222 Piedmont City Unified School District / 10,957       
+ 3 $195,536 Ross Elementary School District / 2,502              
+ 4 $192,589 Portola Valley Elementary School District / 6,520    
+ 5 $189,911 Woodside Elementary School District / 3,436          
+ 6 $172,521 Saratoga Union Elementary School District / 19,774   
+ 7 $166,644 Orinda Union Elementary School District / 18,325     
+ 8 $164,362 Las Lomitas Elementary School District / 11,410      
+ 9 $160,136 Los Altos Elementary School District / 42,311        
+10 $158,266 La Canada Unified School District / 18,300           
+# ℹ 976 more rows</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>income</span> <span class='op'>&lt;-</span> <span class='va'>income</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>X2 <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>X2</span>,<span class='st'>"^[^/]+"</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/case.html'>str_to_upper</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>income</span> <span class='op'>&lt;-</span> <span class='va'>income</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>X3 <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_trim.html'>str_trim</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace</a></span><span class='op'>(</span><span class='va'>X2</span>, <span class='st'>" SCHOOL DISTRICT"</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>merged_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>subset</span>, <span class='va'>income</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"LEA_NAME"</span> <span class='op'>=</span> <span class='st'>"X3"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>merged_data</span> <span class='op'>&lt;-</span> <span class='va'>merged_data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>X1_numeric <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>X1</span>, <span class='st'>"[$,]"</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R1</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_hisp_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R1</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R1</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_hisp_m_AP_rate ~ X1_numeric, data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.24490 -0.05930 -0.00863  0.04844  0.48348 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.647e-01  1.055e-02  15.611   &lt;2e-16 ***
+X1_numeric  3.781e-07  1.621e-07   2.333   0.0199 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.094 on 820 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.006594,  Adjusted R-squared:  0.005383 
+F-statistic: 5.443 on 1 and 820 DF,  p-value: 0.01989</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_asian_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R2</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R2</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_asian_m_AP_rate ~ X1_numeric, data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.55877 -0.12063 -0.01123  0.10386  0.70262 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2.557e-01  2.252e-02   11.35  &lt; 2e-16 ***
+X1_numeric  1.428e-06  3.442e-07    4.15 3.69e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.1977 on 796 degrees of freedom
+  (25 observations deleted due to missingness)
+Multiple R-squared:  0.02117,   Adjusted R-squared:  0.01994 
+F-statistic: 17.22 on 1 and 796 DF,  p-value: 3.691e-05</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R3</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_native_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R3</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R3</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_native_m_AP_rate ~ X1_numeric, data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.42896 -0.22428 -0.08496  0.14471  0.80142 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.618e-01  3.559e-02   4.546 6.37e-06 ***
+X1_numeric  1.259e-06  5.439e-07   2.315   0.0209 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.2878 on 743 degrees of freedom
+  (78 observations deleted due to missingness)
+Multiple R-squared:  0.007158,  Adjusted R-squared:  0.005822 
+F-statistic: 5.357 on 1 and 743 DF,  p-value: 0.02091</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R4</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_nativepacific_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R4</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R4</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_nativepacific_m_AP_rate ~ X1_numeric, 
+    data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.37740 -0.25707 -0.06502  0.15055  0.75066 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2.227e-01  3.651e-02   6.099 1.77e-09 ***
+X1_numeric  7.291e-07  5.491e-07   1.328    0.185    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.2897 on 696 degrees of freedom
+  (125 observations deleted due to missingness)
+Multiple R-squared:  0.002527,  Adjusted R-squared:  0.001094 
+F-statistic: 1.764 on 1 and 696 DF,  p-value: 0.1846</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R5</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_black_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R5</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R5</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_black_m_AP_rate ~ X1_numeric, data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.31024 -0.11210 -0.03535  0.05870  0.83507 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.372e-01  2.087e-02   6.575 8.84e-11 ***
+X1_numeric  8.155e-07  3.184e-07   2.561   0.0106 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.1815 on 794 degrees of freedom
+  (27 observations deleted due to missingness)
+Multiple R-squared:  0.008193,  Adjusted R-squared:  0.006944 
+F-statistic: 6.559 on 1 and 794 DF,  p-value: 0.01062</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R6</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_white_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R6</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R6</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_white_m_AP_rate ~ X1_numeric, data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.37113 -0.09219 -0.01914  0.07048  0.81541 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.092e-01  1.684e-02   6.486 1.53e-10 ***
+X1_numeric  1.705e-06  2.585e-07   6.597 7.53e-11 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.1499 on 817 degrees of freedom
+  (4 observations deleted due to missingness)
+Multiple R-squared:  0.05058,   Adjusted R-squared:  0.04941 
+F-statistic: 43.52 on 1 and 817 DF,  p-value: 7.531e-11</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>R7</span>  <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>school_level_mixedrace_m_AP_rate</span> <span class='op'>~</span> <span class='va'>X1_numeric</span>, data <span class='op'>=</span> <span class='va'>merged_data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>outcome_variable_R7</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>R7</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>R7</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = school_level_mixedrace_m_AP_rate ~ X1_numeric, data = merged_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.35606 -0.14732 -0.02650  0.08536  0.81175 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.240e-01  2.402e-02   5.161 3.13e-07 ***
+X1_numeric  1.884e-06  3.662e-07   5.145 3.40e-07 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.2042 on 773 degrees of freedom
+  (48 observations deleted due to missingness)
+Multiple R-squared:  0.03311,   Adjusted R-squared:  0.03185 
+F-statistic: 26.47 on 1 and 773 DF,  p-value: 3.403e-07</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>race</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hispanic"</span>, <span class='st'>"Asian"</span>, <span class='st'>"American Native"</span>, <span class='st'>"Pacific Islander"</span>, <span class='st'>"Black"</span>, <span class='st'>"White"</span>, <span class='st'>"Two or More Races"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>coef_values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>outcome_variable_R1</span>,<span class='va'>outcome_variable_R2</span>,<span class='va'>outcome_variable_R3</span>,<span class='va'>outcome_variable_R4</span>,<span class='va'>outcome_variable_R5</span>,<span class='va'>outcome_variable_R6</span>,<span class='va'>outcome_variable_R7</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>coefficients</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>race <span class='op'>=</span> <span class='va'>race</span>, coefs <span class='op'>=</span> <span class='va'>coef_values</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>percent_coefs <span class='op'>=</span> <span class='va'>coefs</span><span class='op'>*</span><span class='fl'>10000000</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>coefficients</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>race</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>race</span>, y <span class='op'>=</span> <span class='va'>percent_coefs</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Race"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Percent of Students in at Least 1 AP Class"</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>"California: Proportion of Students by Racial Group in at least 1 AP Class"</span>,</span>
+<span>       subtitle <span class='op'>=</span> <span class='st'>"For Every $100,000 Average Distrcit Income Increase"</span>,</span>
+<span>       source <span class='op'>=</span> <span class='st'>"Office for Civil Rights"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
